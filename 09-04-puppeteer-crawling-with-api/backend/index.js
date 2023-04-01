@@ -3,10 +3,11 @@ import { checkValidationPhone, getToken, sendTokenToSMS } from './phone.js'
 import { checkValidationEmail, getWelcomeTemplate, sendTemplateToEmail }from './email.js'
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
-import {options} from './swagger/config.js'
+import { options } from './swagger/config.js'
 import cors from 'cors';
 import mongoose from 'mongoose';
-import {Board} from './models/board.model.js'
+import { Board } from './models/board.model.js'
+import { Stock } from './models/stock.model.js';
 
 
 const app = express()
@@ -70,11 +71,16 @@ app.post('/users', (req, res) => {
   }
 })
 
+app.get("/stocks", async (req, res) => {
+  const stocks = await Stock.find()
+  res.send(stocks)
+})
+
 //몽고DB 접속!
 mongoose.connect("mongodb://my-database:27017/mydocker03")
 
 
 //backend api 서버 오픈!
-app.listen(3000, () => {
-  console.log(`Example app listening on port ${3000}`)
+app.listen(4000, () => {
+  console.log(`Example app listening on port ${4000}`)
 })

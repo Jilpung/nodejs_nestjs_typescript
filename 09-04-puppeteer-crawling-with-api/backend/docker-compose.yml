@@ -9,7 +9,7 @@ services:
       - ./index.js:/myfolder/index.js
       - ./email.js:/myfolder/email.js
     ports:
-      - 3000:3000
+      - 4000:4000
 
   my-database:
     image: mongo:5
